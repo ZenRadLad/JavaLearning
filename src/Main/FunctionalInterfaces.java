@@ -1,6 +1,8 @@
 package Main;
 
+import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class FunctionalInterfaces {
 
@@ -29,14 +31,23 @@ public class FunctionalInterfaces {
 	}
 
 	private static void predicates() {
-		Predicate<String> p1 = (s) -> s.length() < 10;
+		Predicate<String> p1 = s -> s.length() < 10;
 		System.out.println("Apples is less than 10 chars : " + p1.test("Apples"));
 
-		Predicate<String> p2 = (s) -> s.contains("c");
+		Predicate<String> p2 = s -> s.contains("c");
 		System.out.println("Contains c : " + p2.test("Apples"));
 
-		Predicate<String> p3 = (s) -> s.contains("c");
-		System.out.println("Starts with : " + p3.test("Zapples"));
+		Predicate<String> p3 = s -> s.contains("c");
+		System.out.println("Starts with a : " + p3.test("Zapples"));
+		
+		Predicate<Integer> p = x -> x >= 18;
+		
+		List<Integer> ages = List.of(17, 14, 18, 19, 22, 23, 38);
+        System.out.println(getOnlyAuthorized(ages, p));
+	}
+	
+	private static List<Integer> getOnlyAuthorized(List<Integer> ages, Predicate<Integer> p){
+		return ages.stream().filter(p).collect(Collectors.toList());
 	}
 
 	private static void consumers() {
