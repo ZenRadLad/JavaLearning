@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -43,8 +44,8 @@ public class FunctionalInterfaces {
 	public static void main(String[] args) {
 //		predicates();
 //		consumers();
-		suppliers();
-//		functions();
+//		suppliers();
+		functions();
 //		binaryOperators();
 //		unaryOperators();
 	}
@@ -94,6 +95,21 @@ public class FunctionalInterfaces {
 	}
 
 	private static void functions() {
+		Function<String[], String> converter = (splittedSentence) -> {
+			String res = "";
+			for (String str : splittedSentence) {
+				res += str + " ";
+			}
+			return res;
+		};
+		String[] sentenceInTable = new String[] { "This", "was", "a", "sentence", "in", "a", "table" };
+		System.out.println("Flattened splitted sentence : " + converter.apply(sentenceInTable));
+
+		Function<Integer, String> integerStringConverter = (num) -> Integer.toString(num);
+		String convertingResult = integerStringConverter.apply(488);
+		System.out
+				.println("The number " + convertingResult + " is now of type " + convertingResult.getClass().getName());
+
 	}
 
 	private static void unaryOperators() {
