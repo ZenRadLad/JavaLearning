@@ -5,49 +5,51 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BinaryOperator;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
+import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
 
 @SuppressWarnings("unused")
 public class FunctionalInterfaces {
 
 	/**
-	 * Functional Interfaces : interfaces qui représentent des fonctionalités au
-	 * lieu de données
+	 * Functional Interfaces  
+	 * uses : https://i2.wp.com/javaconceptoftheday.com/wp-content/uploads/2019/03/Java8FunctionalInterfaces.png?ssl=1
 	 **/
 
 	// Predicate : evalute one argument by using a test method and returns a boolean
-	// interface Predicate<T> { boolean test(T t) }
+		// interface Predicate<T> { boolean test(T t) }
 
 	// Consumer :
-	// accepts single arg with no return value
-	// interface Consumer<T> { boolean accept(T t) }
+		// accepts single arg with no return value
+		// interface Consumer<T> { boolean accept(T t) }
 
 	// Supplier : supplies a value without an input
-	// interface Supplier<T> { T get() }
+		// interface Supplier<T> { T get() }
 
 	// Function : (Consumer + Supplier ) transforms a value from one type to another
-	// interface Function<T, R> { R apply(T t) }
+		// interface Function<T, R> { R apply(T t) }
 
 	// BiFunction : represents a function that accepts two args and produce a result
-	// interface BiFunction<T, U, R>
+		// interface BiFunction<T, U, R>
+	
+	// BinaryOperator :
+		// takes two arguments and returns one
 
 	// UnaryOperator :
-	// single argument with a return value
-
-	// BinaryOperator :
-	// takes two arguments and returns one
+		// single argument with a return value
 
 	public static void main(String[] args) {
-//		predicates();
-//		consumers();
-//		suppliers();
+		predicates();
+		consumers();
+		suppliers();
 		functions();
-//		binaryOperators();
-//		unaryOperators();
+		binaryOperators();
+		unaryOperators();
 	}
 
 	private static void predicates() {
@@ -108,13 +110,20 @@ public class FunctionalInterfaces {
 		Function<Integer, String> integerStringConverter = (num) -> Integer.toString(num);
 		String convertingResult = integerStringConverter.apply(488);
 		System.out
-				.println("The number " + convertingResult + " is now of type " + convertingResult.getClass().getName());
+				.println("The number " + convertingResult + " is now of type " + convertingResult.getClass().getSimpleName());
 
+	}
+	
+	private static void binaryOperators() {
+		BinaryOperator<String> bO = (s1, s2) -> {
+			return s1.concat(s2);
+		};
+
+		System.out.println("Concat 'Yo ' and 'Wassaup' : " + bO.apply("Yo ", "Wassup"));
 	}
 
 	private static void unaryOperators() {
-	}
-
-	private static void binaryOperators() {
+		UnaryOperator<String> uO = (str) ->  "Pro".concat(str);
+		System.out.println("Append 'pro' to an input " + uO.apply("moFestivities"));
 	}
 }
