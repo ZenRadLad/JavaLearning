@@ -1,4 +1,4 @@
-package Main;
+package java8;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,7 +44,7 @@ public class Streams {
 		users.add(new User("Leonhard Euler", 17));
 		users.add(new User("Grigori Perelman", 22));
 		users.add(new User("Carl Friedrich Gauss ", 33));
-		users.add(new User("Henri Poincaré", 27));
+		users.add(new User("Henri Poincarï¿½", 27));
 
 		// Terminal vs Intermediate call
 			// Terminal operation (like forEach) must be called to trigger the
@@ -113,7 +113,7 @@ public class Streams {
 		usersToSort.add(new User("Leonhard Euler", 17));
 		usersToSort.add(new User("Grigori Perelman", 22));
 		usersToSort.add(new User("Carl Friedrich Gauss ", 33));
-		usersToSort.add(new User("Henri Poincaré", 27));
+		usersToSort.add(new User("Henri Poincarï¿½", 27));
 
 		usersToSort.sort(
 				Comparator.comparing(User::getName).reversed().thenComparing(Comparator.comparingInt(User::getAge)));
